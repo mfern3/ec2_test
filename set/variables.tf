@@ -5,3 +5,8 @@ variable "ec2_ingress_rules" {}
 variable "ec2_egress_rules" {}
 variable "rds_instance_class" {}
 variable "database_name" {}
+variable "database_user" {}
+variable "rds_allocated_storage" {}
+variable "rds_engine" {}
+variable "rds_engine_version" {}
+variable "instance_type" {}

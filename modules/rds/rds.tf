@@ -17,9 +17,8 @@ resource "aws_security_group" "rds-security-group" {
 }
 
 resource "random_password" "database_password" {
-  length           = 16
-  special          = true
-  override_special = "!#$%&*()-_=+[]{}<>:?"
+  length  = 16
+  special = false
 }
 
 resource "aws_db_instance" "rds" {
@@ -33,5 +32,16 @@ resource "aws_db_instance" "rds" {
   username               = var.database_user
   password               = random_password.database_password.result
   skip_final_snapshot    = true
+}
+
+// Wordpress template to test connectivity.
+data "template_file" "user_data" {
+  template = file("../modules/ec2/user-data.tpl")
+  vars = {
+    db_username      = var.database_user
+    db_user_password = random_password.database_password.result
+    db_name          = var.database_name
+    db_RDS           = aws_db_instance.rds.endpoint
+  }
 }
 

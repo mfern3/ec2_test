@@ -44,25 +44,25 @@ ec2_ingress_rules = [
     cidr_blocks     = ["0.0.0.0/0"]
     security_groups = []
   },
-  {
-    description     = "SSH"
-    from_port       = 22
-    to_port         = 22
-    protocol        = "tcp"
-    cidr_blocks     = ["0.0.0.0/0"]
-  },
 ]
 
 ec2_egress_rules = [
   {
-    description     = "Egress"
-    from_port       = 0
-    to_port         = 0
-    protocol        = "-1"
-    cidr_blocks     = ["0.0.0.0/0"]
+    description = "Egress"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 ]
 
 // RDS values
-database_name      = "test_db"
-rds_instance_class = "db.t2.micro"
+database_name         = "test_db"
+rds_instance_class    = "db.t2.micro"
+rds_engine            = "mysql"
+rds_allocated_storage = 10
+rds_engine_version    = "5.7"
+database_user         = "user"
+
+// EC2 values
+instance_type = "t2.micro"
