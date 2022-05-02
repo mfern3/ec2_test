@@ -1,4 +1,4 @@
-# ecs_rds
+# ec2_rds
 
 ## This repo deploys: 
 
